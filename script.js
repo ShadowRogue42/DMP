@@ -1,44 +1,38 @@
-// JavaScript Document
+const HOURHAND = document.querySelector("#hour");
+const MINUTEHAND = document.querySelector("#minute");
+const SECONDHAND = document.querySelector("#second");
 
-var navChild = document.getElementById("nav");
+var date = new Date();
+console.log(date);
+let hr = date.getHours();
+let min = date.getMinutes();
+let sec = date.getSeconds();
+console.log("Hour: " + hr + " Minute: " + min + " Second: " + sec);
 
-console.log("Number of nav links: " + navChild.childElementCount);
+let hrPosition = (hr*360/12)+(min*(360/60)/12);
+let minPosition = (min*360/60)+(sec*(360/60)/60);
+let secPosition = sec*360/60;
 
-var menuItems = document.getElementsByTagName("dd");
+function runTheClock() {
 
-console.log("Number of items on menu: " + menuItems.length);
+    hrPosition = hrPosition+(3/360);
+    minPosition = minPosition+(6/60);
+    secPosition = secPosition+6;
 
+    HOURHAND.style.transform = "rotate(" + hrPosition + "deg)";
+    MINUTEHAND.style.transform = "rotate(" + minPosition + "deg)";
+    SECONDHAND.style.transform = "rotate(" + secPosition + "deg)";
 
+}
 
-var myMenu = document.getElementById("menuTitle");
-
-myMenu.setAttribute("style", "text-align: center");
-
-var myBlog = document.getElementById("blog");
-
-myBlog.setAttribute("style", "text-align: center; font-weight: bold;");
-
-
-
-var newItem = document.createElement("dd");
-
-var newText = document.createTextNode("- Cuban Espresso");
-
-document.getElementById("coffee").appendChild(newItem);
-
-newItem.appendChild(newText);
-
+var interval = setInterval(runTheClock, 1000);
 
 
-
-function mySurvey() {
-	var txt;
-	var drink = prompt("What type of drinks do you enjoy?", "Coffee");
-			
-	if (drink == null || drink == "") {
-		txt = "User cancelled the survey.";
-	} else {
-		txt = "Thanks for taking our survey! Check back later to learn of great " + drink + " recipes and ideas!";
-	}
-	document.getElementById("prompto").innerHTML = txt;
+function myTimeDate(){
+	var date = new Date();
+	
+	let hr = date.getHours();
+	let min = date.getMinutes();
+	let sec = date.getSeconds();
+	document.getElementById("timeDate").innerHTML = ("The time is " + hr + ":" + min + ":" + sec);
 }
