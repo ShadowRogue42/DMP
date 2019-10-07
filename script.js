@@ -1,44 +1,76 @@
 // JavaScript Document
 
-var navChild = document.getElementById("nav");
+//on click event
+$(document).ready(function(){
+  $("a").on('click', function(event) {
 
-console.log("Number of nav links: " + navChild.childElementCount);
+    if (this.hash !== "") {
+      event.preventDefault();
 
-var menuItems = document.getElementsByTagName("dd");
+      var hash = this.hash;
 
-console.log("Number of items on menu: " + menuItems.length);
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+
+//on load event
+
+$(document).ready(function (){
+	$('#popup').dialog({
+		title: "Welcome!",
+		width: 450,
+		height: 200,
+		modal: true,
+		button: {
+			close: function() {
+				$(this).dialog('close')
+			}
+		}
+	});
+});
 
 
 
-var myMenu = document.getElementById("menuTitle");
+//mouse over eventes
 
-myMenu.setAttribute("style", "text-align: center");
+$(document).ready(function(){
+  $("#img1").mouseover(function(){
+    $("#img1").css("background-color", "darkseagreen");
+  });
+  $("#img1").mouseout(function(){
+    $("#img1").css("background-color", "white");
+  });
+});
 
-var myBlog = document.getElementById("blog");
+$(document).ready(function(){
+  $("#img2").mouseover(function(){
+    $("#img2").css("background-color", "darkseagreen");
+  });
+  $("#img2").mouseout(function(){
+    $("#img2").css("background-color", "white");
+  });
+});
 
-myBlog.setAttribute("style", "text-align: center; font-weight: bold;");
+$(document).ready(function(){
+  $("#img3").mouseover(function(){
+    $("#img3").css("background-color", "darkseagreen");
+  });
+  $("#img3").mouseout(function(){
+    $("#img3").css("background-color", "white");
+  });
+});
 
-
-
-var newItem = document.createElement("dd");
-
-var newText = document.createTextNode("- Cuban Espresso");
-
-document.getElementById("coffee").appendChild(newItem);
-
-newItem.appendChild(newText);
-
-
-
-
-function mySurvey() {
-	var txt;
-	var drink = prompt("What type of drinks do you enjoy?", "Coffee");
-			
-	if (drink == null || drink == "") {
-		txt = "User cancelled the survey.";
-	} else {
-		txt = "Thanks for taking our survey! Check back later to learn of great " + drink + " recipes and ideas!";
-	}
-	document.getElementById("prompto").innerHTML = txt;
-}
+$(document).ready(function(){
+  $("#img4").mouseover(function(){
+    $("#img4").css("background-color", "darkseagreen");
+  });
+  $("#img4").mouseout(function(){
+    $("#img4").css("background-color", "white");
+  });
+});

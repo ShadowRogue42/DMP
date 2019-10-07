@@ -1,124 +1,136 @@
 /* CSS Document */
-
-* {
-  box-sizing: border-box;
+body{
+	margin:0;
+	padding:0;
+	background-color: rgba(177,226,200,0.3);
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-	background-color: lightgray;
-}
 
-/* Style the top navigation bar */
-.topnav {
-	display: block;
-}
-
-.topnav ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #333;
-	position: fixed;
-	width: 100%;
-	top: 0;
-}
-
-.topnav li {
-	float: left;
-}
-
-/* Style the topnav links */
-.topnav li a {
-	display: block;
-	color: white;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-}
-
-/* Change color on hover */
-.topnav li a:hover {
-	background-color: #111;
-}
-
-.topnav li a:active {
-	background-color: #4CAF50;
-}
-
-/* Style the header */
-.header {
-  background: url("images/scooters.jpg") no-repeat center;
+.hero {
+	background-image: url("images/dew.jpg");
 	background-size: cover;
-  padding: 8%;
-  text-align: center;
-	color: white;
-	text-shadow: 1px 2px 8px #aaa;
-	font-size: 4rem;
-}
-
-/* Create three unequal columns that floats next to each other */
-.column {
-  float: left;
-  padding: 2%;
-	min-height: 350px;
-}
-
-/* Left and right column */
-.column.side {
-	width: 25%;
-}
-
-/* Middle column */
-.column.middle {
-	width: 50%;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Style the footer */
-.footer {
-  background-color: #f1f1f1;
-  padding: 2%;
-  text-align: center;
-}
-
-.sideImg {
+	background-attachment: fixed;
+	height: 80vh;
 	width: 100%;
-	margin: auto;
 }
 
-button {
-	padding: 1rem 2rem;
-	border-radius: 10px;
+.overLay{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.3);
+}
+
+.navBar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0 2rem;
+  overflow: hidden;
+  background-color: #121F12;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navBar li {
+  float: left;
+}
+
+.navBar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navBar li a:hover {
+  background-color: darkseagreen;
+	color: black;
+}
+
+.popUp {
+	box-shadow: 2px 4px 5px black;
+	background-color: darkseagreen;
+	padding: 1rem;
+	text-align: center;
+	border-radius: 0 0 15px 15px;
+}
+
+.ui-dialog-titlebar{
+	box-shadow: 2px 4px 5px black;
+	padding: 1rem;
+	text-align: center;
+	background-color: #121F12;
+	color: white;
+	font-size: 2rem;
+	border-radius: 15px 15px 0 0;
+}
+
+.ui-button{
+	float: right;
+	background-color: darkseagreen;
 	border: none;
-	background-color: #305492;
-	cursor: pointer;
-	color: #fff;
-	font-size: 1rem;
+	border-radius: 2px;
+	padding: 5px 10px;
 	font-weight: bold;
-	box-shadow: 2px 3px 8px #333;
 }
 
-button:hover {
-	background-color: #000C97;
-	color: #fff;
-	font-style: italic;
+.spacer {
+	padding: 4rem;
 }
 
+.about{
+	margin: 5rem auto;
+	width: 800px;
+}
 
+.about h2{
+	font-size: 4rem;
+	margin-bottom: 5rem;
+}
 
+.galImgs{
+	display: flex;
+	justify-content: space-around;
+	margin: 5rem auto;
+}
 
+.galHead h2{
+	display: block;
+	font-size: 4rem;
+	margin-bottom: 3rem;
+	text-align: center;
+}
 
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-@media (max-width: 600px) {
-  .column.side, .column.middle {
-    width: 100%;
-  }
+.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 350px;
+}
+
+.gallery:hover {
+  border: 1px solid #777;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+.gallery .desc {
+  padding: 15px;
+  text-align: center;
+}
+
+.footer{
+	text-align: center;
+	padding: 2rem;
+}
+.footer a{
+	text-decoration: none;
+	color: black;
+}
+.footer a:hover{
+	color: red;
 }
