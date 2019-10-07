@@ -1,92 +1,136 @@
+/* CSS Document */
 body{
-	background-color: #E8E8E8;
-}
-
-.main {
-    display: flex;
-    padding: 2em;
-    height: 45vh;
-    justify-content: center;
-    align-items: middle;
-}
-
-.clockbox,
-#clock {
-    width: 100%;
-}
-
-.circle {
-    fill: #2a2e45;
-    stroke: #0e0f11;
-    stroke-width: 9;
-    stroke-miterlimit: 10;
-}
-
-.mid-circle {
-    fill: #2a2e45;
-}
-.hour-marks {
-    fill: none;
-    stroke: #2a2e45;
-    stroke-width: 9;
-    stroke-miterlimit: 10;
-}
-
-.hour-arm {
-    fill: none;
-    stroke: #9ea2bd;
-    stroke-width: 17;
-    stroke-miterlimit: 10;
-	stroke-linecap: round;
-}
-
-.minute-arm {
-    fill: none;
-    stroke: #9ea2bd;
-    stroke-width: 11;
-    stroke-miterlimit: 10;
-	stroke-linecap: round;
-}
-
-.second-arm {
-    fill: none;
-    stroke: #9ea2bd;
-    stroke-width: 4;
-    stroke-miterlimit: 10;
-	stroke-linecap: round;
-}
-
-.sizing-box {
-    fill: none;
-}
-
-#hour,
-#minute,
-#second {
-    transform-origin: 300px 300px;
-    transition: transform .5s ease-in-out;
+	margin:0;
+	padding:0;
+	background-color: rgba(177,226,200,0.3);
 }
 
 
+.hero {
+	background-image: url("images/dew.jpg");
+	background-size: cover;
+	background-attachment: fixed;
+	height: 80vh;
+	width: 100%;
+}
 
-.extra{
+.overLay{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.3);
+}
+
+.navBar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0 2rem;
+  overflow: hidden;
+  background-color: #121F12;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navBar li {
+  float: left;
+}
+
+.navBar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navBar li a:hover {
+  background-color: darkseagreen;
+	color: black;
+}
+
+.popUp {
+	box-shadow: 2px 4px 5px black;
+	background-color: darkseagreen;
+	padding: 1rem;
+	text-align: center;
+	border-radius: 0 0 15px 15px;
+}
+
+.ui-dialog-titlebar{
+	box-shadow: 2px 4px 5px black;
+	padding: 1rem;
+	text-align: center;
+	background-color: #121F12;
+	color: white;
+	font-size: 2rem;
+	border-radius: 15px 15px 0 0;
+}
+
+.ui-button{
+	float: right;
+	background-color: darkseagreen;
+	border: none;
+	border-radius: 2px;
+	padding: 5px 10px;
+	font-weight: bold;
+}
+
+.spacer {
+	padding: 4rem;
+}
+
+.about{
+	margin: 5rem auto;
+	width: 800px;
+}
+
+.about h2{
+	font-size: 4rem;
+	margin-bottom: 5rem;
+}
+
+.galImgs{
+	display: flex;
+	justify-content: space-around;
+	margin: 5rem auto;
+}
+
+.galHead h2{
+	display: block;
+	font-size: 4rem;
+	margin-bottom: 3rem;
 	text-align: center;
 }
 
-button {
-	padding: 1rem 2rem;
-	border-radius: 10px;
-	border: none;
-	background-color: #9ea2bd;
-	cursor: pointer;
-	color: #0e0f11;
-	font-size: 1rem;
-	font-weight: bold;
-	box-shadow: 2px 3px 8px #333;
+.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 350px;
 }
 
-button:hover {
-	background-color: #2a2e45;
-	color: #9ea2bd;
-	font-style: italic;
+.gallery:hover {
+  border: 1px solid #777;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+.gallery .desc {
+  padding: 15px;
+  text-align: center;
+}
+
+.footer{
+	text-align: center;
+	padding: 2rem;
+}
+.footer a{
+	text-decoration: none;
+	color: black;
+}
+.footer a:hover{
+	color: red;
 }

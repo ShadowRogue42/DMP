@@ -1,38 +1,76 @@
-const HOURHAND = document.querySelector("#hour");
-const MINUTEHAND = document.querySelector("#minute");
-const SECONDHAND = document.querySelector("#second");
+// JavaScript Document
 
-var date = new Date();
-console.log(date);
-let hr = date.getHours();
-let min = date.getMinutes();
-let sec = date.getSeconds();
-console.log("Hour: " + hr + " Minute: " + min + " Second: " + sec);
+//on click event
+$(document).ready(function(){
+  $("a").on('click', function(event) {
 
-let hrPosition = (hr*360/12)+(min*(360/60)/12);
-let minPosition = (min*360/60)+(sec*(360/60)/60);
-let secPosition = sec*360/60;
+    if (this.hash !== "") {
+      event.preventDefault();
 
-function runTheClock() {
+      var hash = this.hash;
 
-    hrPosition = hrPosition+(3/360);
-    minPosition = minPosition+(6/60);
-    secPosition = secPosition+6;
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
 
-    HOURHAND.style.transform = "rotate(" + hrPosition + "deg)";
-    MINUTEHAND.style.transform = "rotate(" + minPosition + "deg)";
-    SECONDHAND.style.transform = "rotate(" + secPosition + "deg)";
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
 
-}
+//on load event
 
-var interval = setInterval(runTheClock, 1000);
+$(document).ready(function (){
+	$('#popup').dialog({
+		title: "Welcome!",
+		width: 450,
+		height: 200,
+		modal: true,
+		button: {
+			close: function() {
+				$(this).dialog('close')
+			}
+		}
+	});
+});
 
 
-function myTimeDate(){
-	var date = new Date();
-	
-	let hr = date.getHours();
-	let min = date.getMinutes();
-	let sec = date.getSeconds();
-	document.getElementById("timeDate").innerHTML = ("The time is " + hr + ":" + min + ":" + sec);
-}
+
+//mouse over eventes
+
+$(document).ready(function(){
+  $("#img1").mouseover(function(){
+    $("#img1").css("background-color", "darkseagreen");
+  });
+  $("#img1").mouseout(function(){
+    $("#img1").css("background-color", "white");
+  });
+});
+
+$(document).ready(function(){
+  $("#img2").mouseover(function(){
+    $("#img2").css("background-color", "darkseagreen");
+  });
+  $("#img2").mouseout(function(){
+    $("#img2").css("background-color", "white");
+  });
+});
+
+$(document).ready(function(){
+  $("#img3").mouseover(function(){
+    $("#img3").css("background-color", "darkseagreen");
+  });
+  $("#img3").mouseout(function(){
+    $("#img3").css("background-color", "white");
+  });
+});
+
+$(document).ready(function(){
+  $("#img4").mouseover(function(){
+    $("#img4").css("background-color", "darkseagreen");
+  });
+  $("#img4").mouseout(function(){
+    $("#img4").css("background-color", "white");
+  });
+});
