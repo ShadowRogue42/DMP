@@ -1,92 +1,180 @@
-body{
-	background-color: #E8E8E8;
+body, button, input, select, textarea {
+	font-family: 'Oswald', sans-serif;
+	font-size: 18px;
+	line-height: 1.5;
 }
 
-.main {
-    display: flex;
-    padding: 2em;
-    height: 45vh;
-    justify-content: center;
-    align-items: middle;
+h1, h2, h3, h4, h5, h6 {
+	clear: both;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 3rem;
 }
 
-.clockbox,
-#clock {
-    width: 100%;
+p {
+	margin-bottom: 1.5em;
 }
 
-.circle {
-    fill: #2a2e45;
-    stroke: #0e0f11;
-    stroke-width: 9;
-    stroke-miterlimit: 10;
-}
-
-.mid-circle {
-    fill: #2a2e45;
-}
-.hour-marks {
-    fill: none;
-    stroke: #2a2e45;
-    stroke-width: 9;
-    stroke-miterlimit: 10;
-}
-
-.hour-arm {
-    fill: none;
-    stroke: #9ea2bd;
-    stroke-width: 17;
-    stroke-miterlimit: 10;
-	stroke-linecap: round;
-}
-
-.minute-arm {
-    fill: none;
-    stroke: #9ea2bd;
-    stroke-width: 11;
-    stroke-miterlimit: 10;
-	stroke-linecap: round;
-}
-
-.second-arm {
-    fill: none;
-    stroke: #9ea2bd;
-    stroke-width: 4;
-    stroke-miterlimit: 10;
-	stroke-linecap: round;
-}
-
-.sizing-box {
-    fill: none;
-}
-
-#hour,
-#minute,
-#second {
-    transform-origin: 300px 300px;
-    transition: transform .5s ease-in-out;
-}
-
-
-
-.extra{
-	text-align: center;
-}
-
-button {
-	padding: 1rem 2rem;
-	border-radius: 10px;
-	border: none;
-	background-color: #9ea2bd;
-	cursor: pointer;
-	color: #0e0f11;
-	font-size: 1rem;
+b, strong {
 	font-weight: bold;
-	box-shadow: 2px 3px 8px #333;
 }
 
-button:hover {
-	background-color: #2a2e45;
-	color: #9ea2bd;
+dfn, cite, em, i {
 	font-style: italic;
+}
+
+blockquote {
+	margin: 0 1.5em;
+}
+
+address {
+	margin: 0 0 1.5em;
+}
+
+pre {
+	background: #eee;
+	font-family: "Courier 10 Pitch", Courier, monospace;
+	font-size: 15px;
+	font-size: 1.5rem;
+	line-height: 1.6;
+	margin-bottom: 1.6em;
+	max-width: 100%;
+	overflow: auto;
+	padding: 1.6em;
+}
+
+code, kbd, tt, var {
+	font: 15px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+}
+
+abbr, acronym {
+	border-bottom: 1px dotted #666;
+	cursor: help;
+}
+
+mark, ins {
+	background: #fff9c0;
+	text-decoration: none;
+}
+
+sup, sub {
+	font-size: 75%;
+	height: 0;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+sup {
+	bottom: 1ex;
+}
+
+sub {
+	top: .5ex;
+}
+
+small {
+	font-size: 75%;
+}
+
+big {
+	font-size: 125%;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.masthead {
+    padding: 1em 2em;
+    background-color: grey;
+    color: white;
+	text-shadow: 1px 2px 4px black;
+}
+
+.masthead h1 {
+    text-align: center;
+}
+
+.intro {
+	height: 350px;
+    background-image: url("images/darkForest.jpg");
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+}
+
+.introGrad {
+    color: #fff;
+	height: 100%;
+	background-color: rgba(34,34,34,0.5);
+}
+
+.introGrad p {
+	padding: 7.5em 0;
+	margin: 0 auto;
+    max-width: 550px;
+}
+
+.test-area {
+    margin: 4em auto 0 auto;
+    max-width: 550px;
+}
+
+.test-area {
+    margin-bottom: 4em;
+    padding: 0 2em;
+}
+
+.test-wrapper {
+    border: 10px solid grey;
+    border-radius: 10px;
+}
+
+#origin-text {
+    margin: 2em 0;
+    padding: 1em 1em 0;
+    background-color: rgba(128,128,128,0.15);
+}
+
+#origin-text p {
+    margin: 0;
+    padding-bottom: 1em;
+}
+
+.test-wrapper {
+    height: 200%;
+    display: flex;
+}
+
+.test-wrapper textarea {
+    flex: 1;
+}
+
+.meta {
+    margin-top: 3em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.timer {
+    font-size: 3em;
+    font-weight: bold;
+}
+
+#reset {
+    padding: .5em 1em;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #E95D0F;
+    background: white ;
+    border: 10px solid #E95D0F;
+	border-radius: 10px;
+}
+
+#reset:hover {
+    color: black;
+    background-color: #E95D0F;
 }

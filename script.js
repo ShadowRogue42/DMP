@@ -1,38 +1,67 @@
-const HOURHAND = document.querySelector("#hour");
-const MINUTEHAND = document.querySelector("#minute");
-const SECONDHAND = document.querySelector("#second");
+const testWrapper = document.querySelector(".test-wrapper");
+const testArea = document.querySelector("#test-area");
+const originText = document.querySelector("#origin-text p").innerHTML;
+const resetButton = document.querySelector("#reset");
+const theTimer = document.querySelector(".timer");
 
-var date = new Date();
-console.log(date);
-let hr = date.getHours();
-let min = date.getMinutes();
-let sec = date.getSeconds();
-console.log("Hour: " + hr + " Minute: " + min + " Second: " + sec);
+var timer = [0,0,0,0];
+var interval;
+var timerRunning = false;
 
-let hrPosition = (hr*360/12)+(min*(360/60)/12);
-let minPosition = (min*360/60)+(sec*(360/60)/60);
-let secPosition = sec*360/60;
+function leadingZero(time) {
+    if (time <= 9) {
+        time = "0" + time;
+    }
+    return time;
+}
 
-function runTheClock() {
+function runTimer() {
+    let currentTime = leadingZero(timer[0]) + ":" + leadingZero(timer[1]) + ":" + leadingZero(timer[2]);
+    theTimer.innerHTML = currentTime;
+    timer[3]++;
 
-    hrPosition = hrPosition+(3/360);
-    minPosition = minPosition+(6/60);
-    secPosition = secPosition+6;
+    timer[0] = Math.floor((timer[3]/100)/60);
+    timer[1] = Math.floor((timer[3]/100) - (timer[0] * 60));
+    timer[2] = Math.floor(timer[3] - (timer[1] * 100) - (timer[0] * 6000));
+}
 
-    HOURHAND.style.transform = "rotate(" + hrPosition + "deg)";
-    MINUTEHAND.style.transform = "rotate(" + minPosition + "deg)";
-    SECONDHAND.style.transform = "rotate(" + secPosition + "deg)";
+function spellCheck() {
+    let textEntered = testArea.value;
+    let originTextMatch = originText.substring(0,textEntered.length);
+
+    if (textEntered == originText) {
+        clearInterval(interval);
+        testWrapper.style.borderColor = "#00B00C";
+    } else {
+        if (textEntered == originTextMatch) {
+            testWrapper.style.borderColor = "#279BFF";
+        } else {
+            testWrapper.style.borderColor = "#E30003";
+        }
+    }
 
 }
 
-var interval = setInterval(runTheClock, 1000);
-
-
-function myTimeDate(){
-	var date = new Date();
-	
-	let hr = date.getHours();
-	let min = date.getMinutes();
-	let sec = date.getSeconds();
-	document.getElementById("timeDate").innerHTML = ("The time is " + hr + ":" + min + ":" + sec);
+function start() {
+    let textEnterdLength = testArea.value.length;
+    if (textEnterdLength === 0 && !timerRunning) {
+        timerRunning = true;
+        interval = setInterval(runTimer, 10);
+    }
+    console.log(textEnterdLength);
 }
+
+function reset() {
+    clearInterval(interval);
+    interval = null;
+    timer = [0,0,0,0];
+    timerRunning = false;
+
+    testArea.value = "";
+    theTimer.innerHTML = "00:00:00";
+    testWrapper.style.borderColor = "grey";
+}
+
+testArea.addEventListener("keypress", start, false);
+testArea.addEventListener("keyup", spellCheck, false);
+resetButton.addEventListener("click", reset, false);
