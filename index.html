@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Typing Speed Test</title>
+    <script src="script.js" async></script>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Oswald&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="masthead">
+        <h1>Test Your Typing Speed</h1>
+    </header>
+    <main class="main">
+        <article class="intro">
+			<div class="introGrad">
+            	<p>This is a typing test. Your goal is to duplicate the provided text, EXACTLY, in the field below. The timer starts when you start typing, and only stops when you match this text exactly. Good Luck!</p>
+			</div>
+        </article><!-- .intro -->
+        <section class="test-area">
+            <div id="origin-text">
+                <p>Ahead are two paths; one blocked by a collapse, and the other that's twisted trail leads passed countless other pathways to a ghastly area with an ominous wooden door on the far side. The door blocks your path forward. Dire warning messages are written all over it, somehow untouched by time and the elements. You step closer to inspect it and.. wait.. did something just knock on the door?</p>
+            </div><!-- #origin-text -->
+
+            <div class="test-wrapper">
+                <textarea id="test-area" name="textarea" rows="6" placeholder="The clock starts when you start typing."></textarea>
+            </div><!-- .test-wrapper -->
+
+            <div class="meta">
+                <section id="clock">
+                    <div class="timer">00:00:00</div>
+                </section>
+
+                <button id="reset">Start over</button>
+            </div><!-- .meta -->
+        </section><!-- .test-area -->
+    </main>
+
+</body>
+
+</html>
