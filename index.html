@@ -1,280 +1,304 @@
-<!DOCTYPE html>
-<html lang="en-US">
+<!doctype html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Moonwalk Manor - Your Haven in Space</title>
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i,900,900i" type="text/css" media="all">
-    <link rel="stylesheet" href="style-main.css" type="text/css" media="all">
-
-    <script src="JS/script.js" defer></script>
-    <script src="JS/libs/flexibility.js"></script>
+    <title>HPlus Sport</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-3.0.0.js"></script>
     <script>
-        /*! grunt-grunticon Stylesheet Loader - v2.1.6 | https://github.com/filamentgroup/grunticon | (c) 2015 Scott Jehl, Filament Group, Inc. | MIT license. */
-        !function(){function e(e,n,t){"use strict";var o=window.document.createElement("link"),r=n||window.document.getElementsByTagName("script")[0],a=window.document.styleSheets;return o.rel="stylesheet",o.href=e,o.media="only x",r.parentNode.insertBefore(o,r),o.onloadcssdefined=function(e){for(var n,t=0;t<a.length;t++)a[t].href&&a[t].href===o.href&&(n=!0);n?e():setTimeout(function(){o.onloadcssdefined(e)})},o.onloadcssdefined(function(){o.media=t||"all"}),o}function n(e,n){e.onload=function(){e.onload=null,n&&n.call(e)},"isApplicationInstalled"in navigator&&"onloadcssdefined"in e&&e.onloadcssdefined(n)}!function(t){var o=function(r,a){"use strict";if(r&&3===r.length){var i=t.navigator,c=t.document,s=t.Image,d=!(!c.createElementNS||!c.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!c.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||t.opera&&-1===i.userAgent.indexOf("Chrome")||-1!==i.userAgent.indexOf("Series40")),l=new s;l.onerror=function(){o.method="png",o.href=r[2],e(r[2])},l.onload=function(){var t=1===l.width&&1===l.height,i=r[t&&d?0:t?1:2];t&&d?o.method="svg":t?o.method="datapng":o.method="png",o.href=i,n(e(i),a)},l.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==",c.documentElement.className+=" grunticon"}};o.loadCSS=e,o.onloadCSS=n,t.grunticon=o}(this),function(e,n){"use strict";var t=n.document,o="grunticon:",r=function(e){if(t.attachEvent?"complete"===t.readyState:"loading"!==t.readyState)e();else{var n=!1;t.addEventListener("readystatechange",function(){n||(n=!0,e())},!1)}},a=function(e){return n.document.querySelector('link[href$="'+e+'"]')},i=function(e){var n,t,r,a,i,c,s={};if(n=e.sheet,!n)return s;t=n.cssRules?n.cssRules:n.rules;for(var d=0;d<t.length;d++)r=t[d].cssText,a=o+t[d].selectorText,i=r.split(");")[0].match(/US\-ASCII\,([^"']+)/),i&&i[1]&&(c=decodeURIComponent(i[1]),s[a]=c);return s},c=function(e){var n,r,a,i;a="data-grunticon-embed";for(var c in e){i=c.slice(o.length);try{n=t.querySelectorAll(i)}catch(s){continue}r=[];for(var d=0;d<n.length;d++)null!==n[d].getAttribute(a)&&r.push(n[d]);if(r.length)for(d=0;d<r.length;d++)r[d].innerHTML=e[c],r[d].style.backgroundImage="none",r[d].removeAttribute(a)}return r},s=function(n){"svg"===e.method&&r(function(){c(i(a(e.href))),"function"==typeof n&&n()})};e.embedIcons=c,e.getCSS=a,e.getIcons=i,e.ready=r,e.svgLoadedCallback=s,e.embedSVG=s}(grunticon,this)}();
-        grunticon(["gfx/icons.data.svg.css", "gfx/icons.data.png.css", "gfx/icons.fallback.css"], grunticon.svgLoadedCallback);
+        $(function () {
+            $("#products h2.product-name[data-type='mineralwater']").css("background-color", "#2982D0");
+            $("#products h2.product-name[data-type='vitamin']").css("background-color", "#12500F");
+            $("#products h2.product-name[data-type='proteinbar']").css("background-color", "#4E0F50");
+
+            document.querySelector('#cbVitamins').addEventListener('change',function (evt) {
+                updateProductView("vitamins", evt.target.checked);
+            });
+            document.querySelector('#cbMineralWater').addEventListener('change',function (evt) {
+                updateProductView("mineralwater", evt.target.checked);
+            });
+            document.querySelector('#cbProtein').addEventListener('change',function (evt) {
+                updateProductView("proteinbar", evt.target.checked);
+            });
+
+            $(".product-item").each(function () {
+                var prodName = encodeURIComponent($(this).children("h2").text());
+				var prodType = encodeURIComponent($(this).children("h2").data("type"));
+                var prodID = encodeURIComponent($(this).data("prod_id"));
+
+                var link = $("<a href='product.html?prodName=" + prodName + "&prodType=" + prodType + "&prodID=" + prodID + "'/>");
+                $(this).children("img").wrap(link);
+            })
+            
+        })
+
+        function updateProductView(categoryName, bVisible) {
+            // get a list of the product items for the given category.
+            // Use the data attributes to narrow the list
+            var dataSelectorVal = "";
+            switch (categoryName) {
+            case "vitamins":
+                dataSelectorVal = "h2[data-type='vitamin']";
+                break;
+            case "mineralwater":
+                dataSelectorVal = "h2[data-type='mineralwater']";
+                break;
+            case "proteinbar":
+                dataSelectorVal = "h2[data-type='proteinbar']";
+                break;
+            }
+            // use the has() function to select the li tags that are product items
+            // that contain the h2 tag with the corresponding data attribute value
+            $(".product-item").has(dataSelectorVal).css('display', bVisible ? "" : "none");
+        }
     </script>
-    <noscript><link href="gfx/icons.fallback.css" rel="stylesheet"></noscript>
 </head>
 
 <body>
-    <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
 
-    <header class="masthead clear">
-        <div class="site-header centered">
-            <div class="site-branding">
-                <h1 class="site-title"><a href="/"><span class="icon-mmlogo" data-grunticon-embed></span>Moonwalk Manor</a></h1>
-            </div><!-- .site-title -->
-            <nav id="multi-level-nav" class="menu multi-level-nav">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li class="has-children">
-                        <a href="#">Your Stay<button class="dropdown-toggle" aria-expanded="false"><span class="screen-reader-text">Expand child menu</span></button></a>
-                        <ul class="sub-menu">
-                            <li><a href="#">Experiences</a></li>
-                            <li><a href="#">Dining</a></li>
-                            <li><a href="#">Amenities</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a class="reserve" href="#">Make a Reservation</a></li>
+    <header id="home" class="header">
+        <nav class="nav" role="navigation">
+            <div class="container nav-elements">
+                <div class="branding">
+                    <a href="#home"><img src="images/hpluslogo.svg" alt="Logo - H Plus Sports"></a>
+                </div>
+                <!-- branding -->
+                <ul class="navbar">
+                    <li><a href="#home">home</a></li>
+                    <li><a href="#history">history</a></li>
+                    <li><a href="#products">products</a></li>
+                    <li><a href="#guarantee">guarantee</a></li>
+                    <li><a href="#people">people</a></li>
                 </ul>
-            </nav><!-- #multi-level-nav .multi-level-nav -->
-        </div><!-- .centered -->
+                <!-- navbar -->
+            </div>
+            <!-- container nav-elements -->
+        </nav>
+        <div class="container tagline">
+            <h1 class="headline">Our Mission</h1>
+            <p>We support and encourage <em>active and healthy</em> lifestyles, by offering <em>ethically sourced</em> and <em>eco-friendly</em> nutritional products for the <em>performance-driven</em> athlete.</p>
+        </div>
+        <!-- container tagline -->
+    </header>
+    <!-- #home -->
 
-    </header><!-- .masthead -->
+    <section id="history" class="section">
+        <div class="container">
+            <div class="text-content">
+                <h2 class="headline">Company History</h2>
+                <p>In 2006, H+ Sport founder <a href="#employees-henrytwill">Henry Twill</a> set out to create supplements and nutritional products made from the <em>purest ingredients</em> and backed by scientific and <em>performance data</em> – to provide a strong basis of <em>trust and accountability</em>.</p>
+                <p>His quest began while training for his <em>first 5K marathon</em>, after recovering from a <em>lengthy injury</em> that left him with residual aches, pains, and decreased athletic performance. He yearned for <em>simple and natural ingredients</em>, in their purest form, instead of labels with <em>lengthy chemical names</em> and disclaimers. When no products lived up to his strict requirements, Henry set his sights on <em>creating products</em> that catered to his own vision.</p>
+                <p>Today that vision has become H+ Sport…offering a variety of <a href="#products">supplements, energy bars and rehydration solutions</a>. At the foundation of H+ Sports are products backed by scientific and performance data.</p>
+            </div>
+        </div>
+        <!-- container text -->
+    </section>
+    <!-- #history -->
 
-    <div id="showcase" class="promo-area">
-        <div class="front-slider flexslider">
-            <ul class="slides">
-                <li>
-                    <img src="images/mainpromo/welcome01-800.jpg" alt="" data-type="showcase" />
-                </li>
-                <li>
-                    <img src="images/mainpromo/welcome02-800.jpg" alt="" data-type="showcase" />
-                </li>
-                <li>
-                    <img src="images/mainpromo/welcome03-800.jpg" alt="" data-type="showcase" />
-                </li>
-                <li>
-                    <img src="images/mainpromo/welcome04-800.jpg" alt="" data-type="showcase" />
-                </li>
-            </ul>
-        </div><!-- .flexslider -->
-        <div class="promo-content">
-            <div class="promo-text">
-                <h2 class="promo-title">A Hotel on the Moon?!?</h2>
-                <p class="promo-lede">That is absolutely bonkers! Who came up with this absurd idea? What about all the dust?</p>
-            </div><!-- .promo-text -->
-        </div><!-- .promo-content -->
-    </div><!-- #showcase .promo-area -->
+    <section id="products" class="section">
+        <header class="imageheader"></header>
+        <div class="container">
+            <h2 class="headline">Products</h2>
+            <p>H+ Sport is <em>dedicated to creating</em> eco-friendly, high-quality, nutrient-rich, nutritional products that <em>enhance active lifestyles</em>. We <a href="#guarantee">guarantee</a> it. Take a look at some of our products.</p>
+        </div>
+        <!-- container -->
+        <div id="productControls">
+            <form>
+                <div>
+                    <span>Show: </span>
+                    <input id="cbVitamins" type="checkbox" checked="checked" />
+                    <label for="cbVitamins">Vitamins </label>
+                    <input id="cbMineralWater" type="checkbox" checked="checked" />
+                    <label for="cbMineralWater">Mineral Water </label>
+                    <input id="cbProtein" type="checkbox" checked="checked" />
+                    <label for="cbProtein">Protein Bars </label>
+                </div>
+            </form>
+        </div>
+        <ul class="product-list">
+            <li class="product-item" data-prod_id="V-A1037">
+                <img class="product-image" src="images/products/vitamin-a.jpg" alt="Vitamin A - Product Photo">
+                <h2 class="product-name" data-type="vitamin">Vitamin A</h2>
+            </li>
+            <li class="product-item" data-prod_id="V-BC2178">
+                <img class="product-image" src="images/products/vitamin-bcomplex.jpg" alt="B Complex - Product Photo">
+                <h2 class="product-name" data-type="vitamin">Vitamin-B Complex</h2>
+            </li>
+            <li class="product-item" data-prod_id="MW-8812">
+                <img class="product-image" src="images/products/mineralwater-blueberry.jpg" alt="Blueberry Mineral Water - Product Photo">
+                <h2 class="product-name" data-type="mineralwater">Blueberry Mineral Water</h2>
+            </li>
+            <li class="product-item" data-prod_id="V-C6614">
+                <img class="product-image" src="images/products/vitamin-c.jpg" alt="Vitamin C - Product Photo">
+                <h2 class="product-name" data-type="vitamin">Vitamin C</h2>
+            </li>
+            <li class="product-item" data-prod_id="PB-8154">
+                <img class="product-image" src="images/products/proteinbar-chocolate.jpg" alt="Protein Bar Chocolate - Product Photo">
+                <h2 class="product-name" data-type="proteinbar">Chocolate Protein Bar</h2>
+            </li>
+            <li class="product-item" data-prod_id="V-CA4543">
+                <img class="product-image" src="images/products/vitamin-calcium.jpg" alt="Vitamin Calcium - Product Photo">
+                <h2 class="product-name" data-type="vitamin">Calcium Vitamin</h2>
+            </li>
+            <li class="product-item" data-prod_id="V-D1825">
+                <img class="product-image" src="images/products/vitamin-d.jpg" alt="Vitamin D - Product Photo">
+                <h2 class="product-name" data-type="vitamin">Vitamin D</h2>
+            </li>
+            <li class="product-item" data-prod_id="V-F2225">
+                <img class="product-image" src="images/products/vitamin-flaxseed-oil.jpg" alt="Flaxseed Oil - Product Photo">
+                <h2 class="product-name" data-type="vitamin">Flaxseed Oil Vitamin</h2>
+            </li>
+            <li class="product-item" data-prod_id="V-I7456">
+                <img class="product-image" src="images/products/vitamin-iron.jpg" alt="Vitamin Iron - Product Photo">
+                <h2 class="product-name" data-type="vitamin">Iron Vitamin</h2>
+            </li>
+            <li class="product-item" data-prod_id="MW-9143">
+                <img class="product-image" src="images/products/mineralwater-lemonlime.jpg" alt="Mineral Water Lemon Lime - Product Photo">
+                <h2 class="product-name" data-type="mineralwater">Lemon Lime Mineral Water</h2>
+            </li>
+            <li class="product-item" data-prod_id="V-M0019">
+                <img class="product-image" src="images/products/vitamin-magnesium.jpg" alt="Vitamin Magnesium - Product Photo">
+                <h2 class="product-name" data-type="vitamin">Magnesium Vitamin</h2>
+            </li>
+            <li class="product-item" data-prod_id="V-MV7763">
+                <img class="product-image" src="images/products/vitamin-multi.jpg" alt="Vitamin Multivitamin - Product Photo">
+                <h2 class="product-name" data-type="vitamin">Multi-vitamin</h2>
+            </li>
+            <li class="product-item" data-prod_id="PB-1234">
+                <img class="product-image" src="images/products/proteinbar-peanutbutter.jpg" alt="Vitamin Protein Bar Peanut Butter - Product Photo">
+                <h2 class="product-name" data-type="proteinbar">Peanut Butter Protein Bar</h2>
+            </li>
+            <li class="product-item" data-prod_id="MW-S0987">
+                <img class="product-image" src="images/products/mineralwater-strawberry.jpg" alt="Mineral Water Strawberry - Product Photo">
+                <h2 class="product-name" data-type="mineralwater">Strawberry Mineral Water</h2>
+            </li>
+            <li class="product-item" data-prod_id="PB-1919">
+                <img class="product-image" src="images/products/proteinbar-lemon.jpg" alt="Protein Bar Lemon - Product Photo">
+                <h2 class="product-name" data-type="proteinbar">Lemon Protein Bar</h2>
+            </li>
+            <li class="product-item" data-prod_id="MW-O1980">
+                <img class="product-image" src="images/products/mineralwater-orange.jpg" alt="Mineral Water Orange - Product Photo">
+                <h2 class="product-name" data-type="mineralwater">Orange Mineral Water</h2>
+            </li>
+            <li class="product-item" data-prod_id="MW-P1968">
+                <img class="product-image" src="images/products/mineralwater-peach.jpg" alt="Mineral Water Peach - Product Photo">
+                <h2 class="product-name" data-type="mineralwater">Peach Mineral Water</h2>
+            </li>
+            <li class="product-item" data-prod_id="MW-R2003">
+                <img class="product-image" src="images/products/mineralwater-raspberry.jpg" alt="Mineral Water Raspberry - Product Photo">
+                <h2 class="product-name" data-type="mineralwater">Raspberry Mineral Water</h2>
+            </li>
+        </ul>
+        <!-- product-list -->
+    </section>
+    <!-- #products -->
 
-    <main class="main-area">
+    <section id="guarantee" class="section">
+        <header class="imageheader"></header>
+        <div class="container">
+            <h2 class="headline">Our Guarantee &amp; Ideals</h2>
+            <p>We’re committed to creating products that <em>defy convention</em>, and inspire our customers with pride and trust. In fact, we guarantee <a href="#products">every product</a> we sell. If you’re not 100 percent happy with your purchase, you can return it during the first 60 days, <em>no questions asked</em>.</p>
+            <p>Philanthropy is extremely important to us. In fact, <em>each employee volunteers</em> for organization of his or her choice, on the clock, for two hours each week. We know that doing good, breeds more doing good, and we’re happy to <em>promote a cycle</em> of volunteerism that just keeps on giving.</p>
+        </div>
+    </section>
+    <!-- guarantee -->
 
-        <div class="top-pitch centered">
-            <h2 class="main-title">Welcome to Moonwalk Manor</h2>
-            <p class="teaser two-column">
-                Moonwalk Manor is an awesome new hotel on the moon. Yes, on the friggin <strong>moon</strong>. Always wanted to see what the earth looks like from afar? Well, now you can. While taking part in a low-G yoga class or exploring the landing sites of the original Apollo missions. To call a stay at Moonwalk Manor a unique experience would be the understatement of the century. Your stay at Moonwalk Manor will change your perception of reality and make you a whole new person.
-            </p>
-        </div><!-- .pitch centered -->
-        <div class="cta">
-            <a href="#">Book Now!</a>
-        </div><!-- .cta -->
+    <section id="people" class="section">
+        <header class="imageheader"></header>
+        <div class="container">
+            <h2 class="headline">People</h2>
+            <div class="people-cards">
+                <div class="person-card">
+                    <img src="images/employees/HenryTwill.jpg" alt="HenryTwill Photo">
+                    <div class="card-info">
+                        <h3 class="card-name">Henry Twill, Jr</h3>
+                        <h4 class="card-title">CEO</h4>
+                    </div>
+                    <p class="card-text">Henry Twill Jr. is the <em>founder</em> and CEO of H+ Sports. Previously he was an <em>athletic trainer</em> working with several top athletes, making sure that they had the direction and proper coaching to keep them at the <em>top of their game</em>. Henry’s passion for finding natural alternatives led him to developing H+ Sport Multivitamins. The supplements <em>became a success</em> with his clients and led to the creation of H+ Sports.</p>
+                </div>
+                <!-- person-card -->
 
-        <section class="main-pitch">
-            <div class="three-reasons centered">
-                <figure class="reason">
-                    <a href="">
-                        <img src="images/mainpromo/welcome02-800.jpg" alt="" data-type="reason" />
-                    </a>
-                    <figcaption>
-                        <h3 class="content-title">A Room with a View</h3>
-                        <p>Every room at Moonwalk Manor, whether you are staying in a discount suite or going Apartment Class&reg;, has a panoramic view.</p>
-                        <a class="content-button" href="#">Learn More<span class="screen-reader-text"> about the views.</span></a>
-                    </figcaption>
-                </figure><!-- .reason -->
-                <figure class="reason">
-                    <a href="">
-                        <img src="images/mainpromo/welcome03-800.jpg" alt="" data-type="reason" />
-                    </a>
-                    <figcaption>
-                        <h3 class="content-title">Luxurious Sleep</h3>
-                        <p>Yes, you're on the moon, but that doesn't mean gravity won't do its work on your body. After a long day of excitement, bunk down in our luxurious beds to recharge for the next day.</p>
-                        <a class="content-button" href="#">Learn More<span class="screen-reader-text"> about our amazing beds.</span></a>
-                    </figcaption>
-                </figure><!-- .reason -->
-                <figure class="reason">
-                    <a href="">
-                        <img src="images/mainpromo/welcome04-800.jpg" alt="" data-type="reason" />
-                    </a>
-                    <figcaption>
-                        <h3 class="content-title">First Class Treatment</h3>
-                        <p>Your comfort and safety is our priority. At Moonwalk Manor we pride ourselves on first class treatment from the moment you arrive to the moment you set your foot back on earth. Even during a meteor event.</p>
-                        <a class="content-button" href="#">Learn More<span class="screen-reader-text"> about meteor shelters and our liability waiver.</span></a>
-                    </figcaption>
-                </figure><!-- .reason -->
-            </div><!-- .three-reasons centered -->
-        </section><!-- .main-pitch -->
+                <div class="person-card">
+                    <img src="images/employees/JessicaNewton.jpg" alt="JessicaNewton Photo">
+                    <div class="card-info">
+                        <h3 class="card-name">Jessica Newton-Smith, MBA</h3>
+                        <h4 class="card-title">CFO</h4>
+                    </div>
+                    <p class="card-text">Jessica Newton-Smith joined us in 2012 and brings more than <em>10 years</em> of financial management experience to H+ Sports, spanning a variety of companies and industries ranging from <em> Fortune 500 agencies</em> to start-ups. She has extensive experience working in <em>emerging markets</em> and in the consumer and retail sectors.</p>
+                </div>
+                <!-- person-card -->
 
-        <section class="pitch">
-            <div class="centered">
-                <h2 class="main-title">The Moonwalk Experience</h2>
-                <p class="teaser two-column">
-                    You're not merely going to a hotel. You are going to a new planetary body, held in earth's gravitational embrace, that travels on its own orbit around the sun. The experiences you'll have with us are unlike any other.
-                </p>
-            </div><!-- .centered -->
-        </section><!-- .pitch centered -->
+                <div class="person-card">
+                    <img src="images/employees/PhiTang.jpg" alt="PhiTang Photo">
+                    <div class="card-info">
+                        <h3 class="card-name">Phi Tang, MBA</h3>
+                        <h4 class="card-title">Director of Product Development</h4>
+                    </div>
+                    <p class="card-text">Phi Tang joined H+ Sports in <em>2007</em> as Manager of Marketing Research. He was promoted to Director of Product Development in 2011. He has made <em>major contributions</em> to the discovery, development, and implementation of the H+ Sport product lines. Before joining the company he worked as a <em>scientific expert</em> and brings vast knowledge of ingredients and <em>new technologies</em>.</p>
+                </div>
+                <!-- person-card -->
 
-        <section class="features centered">
-            <figure class="feature">
-                <a href="#">
-                    <img src="images/experience/apartmentclass-800.jpg" alt="" data-type="feature" />
-                </a>
-                <figcaption>
-                    <h3 class="content-title">Apartment Class&reg; Accommodations</h3>
-                    <p>Stay on the moon with the comforts of your own home. Moonwalk Manor Apartment Class&reg; offers a full-scale New York style apartment with all the luxuries you'd expect in your own home and more.</p>
-                    <a class="content-button" href="#">Learn More<span class="screen-reader-text"> about Apartment Class&reg; living.</span></a>
-                </figcaption>
-            </figure><!-- .feature -->
-            <figure class="feature">
-                <a href="#">
-                    <img src="images/experience/fivestardining-800.jpg" alt="" data-type="feature" />
-                </a>
-                <figcaption>
-                    <h3 class="content-title">Five-Star Dining</h3>
-                    <p>Before we left earth, we convinced the best chefs in the business to come with us. Is low gravity an ingredient in fine dining? Only one way to find out!</p>
-                    <a class="content-button" href="#">Learn More<span class="screen-reader-text"> about Explosive Decompression Ice Cream.</span></a>
-                </figcaption>
-            </figure><!-- .feature -->
-            <figure class="feature">
-                <a href="#">
-                    <img src="images/experience/gravitygym-800.jpg" alt="" data-type="feature" />
-                </a>
-                <figcaption>
-                    <h3 class="content-title">Gravity Gym</h3>
-                    <p>Our Gravity Gym offers exercises you've never even dreamed of. From our Centrifugal Super-G Track to our Zero-G Yoga Studio, Moonwalk Manor has a new experience to offer everyone.</p>
-                    <a class="content-button" href="#">Learn More<span class="screen-reader-text"> about freefall vertigo.</span></a>
-                </figcaption>
-            </figure><!-- .feature -->
-            <figure class="feature">
-                <a href="#">
-                    <img src="images/experience/spa-800.jpg" alt="" data-type="feature" />
-                </a>
-                <figcaption>
-                    <h3 class="content-title">Moon Dust Spa</h3>
-                    <p>Regolith is what makes the moon grey. It is also what will rejuvinate  your skin, making it silky smooth to the touch. The unique properties of moon dust makes it an ideal exfoliant and skin conditioner. Visit our spa and find out for yourself.</p>
-                    <a class="content-button" href="#">Learn More<span class="screen-reader-text"> about regolith rash.</span></a>
-                </figcaption>
-            </figure><!-- .feature -->
+                <div class="person-card">
+                    <img src="images/employees/MariaSontas.jpg" alt="MariaSontas Photo">
+                    <div class="card-info">
+                        <h3 class="card-name">Maria Sontas</h3>
+                        <h4 class="card-title">Director of Marketing</h4>
+                    </div>
+                    <p class="card-text">Maria Sontas has been with H+ Sport since 2010. She oversees the company’s <em>marketing strategy</em> – ensuring advertising campaigns, social media initiatives, and events are planned to <em>position the company</em> strongly in a competitive marketplace. Maria is a <em>competing triathlete</em> and her passion for our products shows in her unique ability to drive awareness and <em>increase our presence</em> around the world.</p>
+                </div>
+                <!-- person-card -->
 
-        </section><!-- .features centered -->
+                <div class="person-card">
+                    <img src="images/employees/AngelaHaston.jpg" alt="AngelaHaston Photo">
+                    <div class="card-info">
+                        <h3 class="card-name">Angela Hashton</h3>
+                        <h4 class="card-title">Director of Sales</h4>
+                    </div>
+                    <p class="card-text">Angela Hashton joined the company in 2009, to <em>initiate new relationships</em> for our growing line of H+ Sports active apparel. After being with the company for a year, she was promoted to Director of Sales. Angela is the drive behind the H+ Sport <em>ACTIVE product line</em> and has an uncanny ability to formulate strategies that have helped build our unified sales force. <em>Educating people</em> about health and nutrition is something that Angela holds dear.</p>
+                </div>
+                <!-- person-card -->
 
-        <div class="cta">
-            <a href="#">Book Now!</a>
-        </div><!-- .cta -->
-
-        <h2 class="main-title">Tales from the Moon</h2>
-        <section class="stories centered">
-            <!-- slider -->
-            <div class="story-slider flexslider">
-                <ul class="slides">
-                    <li>
-                        <figure class="story-wrapper">
-                            <img src="images/testimonials/bluepebble-800.jpg" alt="" data-type="story" />
-                            <figcaption class="story">
-                                <h3 class="story-header">Earth Rise</h3>
-                                <div class="author">Bob MacEnzie</div>
-                                <p>You've heard stories about the first astronauts visiting the moon and looking back at the earth rising on the horizon. Then you see it for yourself and realize just how small and vulnerable we all are.</p>
-                                <a href="#" class="content-button">Get the whole story</a>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li>
-                        <figure class="story-wrapper">
-                            <img src="images/testimonials/earth-800.jpg" alt="" data-type="story" />
-                            <figcaption class="story">
-                                <h3 class="story-header">Earth Seen from Heaven</h3>
-                                <div class="author">Judy Blench</div>
-                                <p>Rising up through the atmosphere, I saw the three-dimensionality of Earth for the first time. I was a flat-earther until that moment, but now I realize the turtles must be in a different dimension.</p>
-                                <a href="#" class="content-button">Get the whole story</a>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li>
-                        <figure class="story-wrapper">
-                            <img src="images/testimonials/footprint-800.jpg" alt="" data-type="story" />
-                            <figcaption class="story">
-                                <h3 class="story-header">Footprints in the Regolith</h3>
-                                <div class="author">Maiken Endersen</div>
-                                <p>One small step for man. A million small footprints from giddy tourists. I wonder if anyone will look at a picture of mine in the future and dream of being the first woman on a new planet.</p>
-                                <a href="#" class="content-button">Get the whole story</a>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li>
-                        <figure class="story-wrapper">
-                            <img src="images/testimonials/zerog-800.jpg" alt="" data-type="story" />
-                            <figcaption class="story">
-                                <h3 class="story-header">Falling through gravity</h3>
-                                <div class="author">Maiken Endersen</div>
-                                <p>I thought I knew yoga and how to control my body. Was I ever wrong. I have learned more about myself in two days in the Zero-G Yoga Studio than I had in 20 years of regular floor-based practice.</p>
-                                <a href="#" class="content-button">Get the whole story</a>
-                            </figcaption>
-                        </figure>
-                    </li>
-                </ul>
-            </div><!-- .story-slider -->
-        </section><!-- .stories centered -->
-
-    </main><!-- .main-area -->
+                <div class="person-card">
+                    <img src="images/employees/MichaelLewiston.jpg" alt="MichaelLewiston Photo">
+                    <div class="card-info">
+                        <h3 class="card-name">Michael Lewiston</h3>
+                        <h4 class="card-title">MFA, Creative Director</h4>
+                    </div>
+                    <p class="card-text">Michael Lewiston is a multi-faceted <em>creative person</em> who began his career as a designer for a small business firm, while also working as an independent <em>painter and sculptor</em>. In 2007, Henry Twill was impressed by Michael’s creative work in a national ad campaign for a high profile sports apparel company. Henry approached Michael, and asked him to <em>manage creative direction</em> for the H+ Sport ACTIVE apparel line.</p>
+                </div>
+                <!-- person-card -->
+            </div>
+            <!-- container -->
+    </section>
+    <!-- people -->
 
     <footer class="footer">
-        <section class="footer-widgets centered">
-            <div class="widget footer-menu">
-                <h4 class="widget-title">Find your way</h4>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Accommodations</a></li>
-                    <li><a href="#">Experiences</a></li>
-                    <li><a href="#">Dining</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div><!-- .widget -->
-            <div class="widget footer-cta">
-                <h4 class="widget-title">Make a Reservation</h4>
-                <p>What are you waiting for? The moon is ready for your visit.</p>
-                <a href="#">Book Now!</a>
-
-            </div><!-- .widget -->
-            <div class="widget footer-address">
-                <address>
-                    <h4 class="widget-title">Moonwalk Manor</h4>
-                    <p>
-                        1 Moonwalk Avenue<br>
-                        M00N, Tycho<br>
-                        Luna
-                    </p>
-                </address>
-            </div><!-- .widget -->
-        </section><!-- .footer-widgets -->
-        <nav class="social-nav" role="navigation">
-            <ul>
-                <li><a class="icon-linkedin" data-grunticon-embed href="https://linkedin.com"><span class="screen-reader-text">LinkedIn</span></a></li>
-                <li><a class="icon-twitter" data-grunticon-embed href="https://twitter.com"><span class="screen-reader-text">Twitter</span></a></li>
-                <li><a class="icon-facebook" data-grunticon-embed href="https://facebook.com"><span class="screen-reader-text">Facebook</span></a></li>
-                <li><a class="icon-instagram" data-grunticon-embed href="https://instagram.com"><span class="screen-reader-text">Instagram</span></a></li>
-                <li><a class="icon-youtube" data-grunticon-embed href="https://youtube.com"><span class="screen-reader-text">YouTube</span></a></li>
-            </ul>
-        </nav><!-- .social-nav -->
-    </footer><!-- .footer -->
-
-    <script src="JS/libs/jquery-2.1.3.min.js"></script>
-    <script src="JS/libs/jquery.flexslider-min.js"></script>
-    <script src="JS/menu-toggle.js"></script>
-    <script src="JS/flexslider.js"></script>
+        <header class="imageheader"></header>
+        <div class="container">
+            <nav class="nav" role="navigation">
+                <div class="container nav-elements">
+                    <div class="branding">
+                        <a href="#home"><img src="images/hpluslogo.svg" alt="Logo - H Plus Sports"></a>
+                        <p class="address">100 Main Street
+                            <br> Seattle, WA 98144
+                        </p>
+                    </div>
+                    <ul class="navbar">
+                        <li><a href="#home">home</a></li>
+                        <li><a href="#history">history</a></li>
+                        <li><a href="#products">products</a></li>
+                        <li><a href="#guarantee">guarantee</a></li>
+                        <li><a href="#people">people</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <p class="legal">H+ Sport is a fictitious brand created by lynda.com solely for the purpose of training. All products and people associated with H+ Sport are also fictitious. Any resemblance to real brands, products, or people is purely coincidental. Information provided about the product is also fictitious and should not be construed to be representative of actual products on the market in a similar product category.</p>
+        </div>
+        <!-- container -->
+    </footer>
+    <!-- footer -->
 
 </body>
 
