@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	
-    <title>Snake</title>
+    <title>Hangman</title>
 	
     <link rel="stylesheet" type="text/css" href="style.css" />
 	<script
@@ -17,10 +17,32 @@
 </head>
 
 <body>
-	<div class="titleHeader">
-		<h1>Snake Game</h1>
+<body>
+	<div class="container-fluid" id="main-container">
+		
+		<div>
+			<h1 id="drawWord" class="draw"></h1>
+		</div>
+		
+		<h2 id="game-title">Hangman</h2>
+		
+		<p class="title" id="word"></p>
+		<p id="wordInput">Enter your word:
+			<input id="word1" type="Password">
+			<p><strong id="required"></strong></p>
+		</p>
+	
+		<div style="margin:2rem auto">
+			<button id="btn1" style="width: 100px;" >Set</button>
+			<button id="btn2" style="width: 100px;">Clear</button>
+		</div>
+	
+		<div class="keyboard"></div>
+	
+		<br />
+		<br />
 	</div>
-<canvas id="canvas" width="800" height="600"></canvas>
+</body>
 	
 </body>
 </html>

@@ -1,121 +1,113 @@
-$(document).ready(function(){
-	var canvas = $("#canvas")[0];
-	var ctx = canvas.getContext("2d");
-	var w = $("#canvas").width();
-	var h = $("#canvas").height();
+$(document).ready(function() {
+    var min = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
-	var cw = 10;
-	var d;
-	var food;
-	var score;
-	var level;
+    var buttons = [];
+    var letter = "";
+    var length;
+    var answer = "";
+    var chain = [];
+    var uppercase = "";
+    var numToMatch = 0;
+    var stringword = "";
+    var wrong = 10;
+  
+    $(".title").empty();
+    $(".draw").text("Lets play");
+    $("button#btn1").attr("disabled", false);
+	
+    function setCharAt(str, index, chr) {
+        if (index > str.length - 1) return str;
+        return str.substr(0, index) + chr + str.substr(index + 1);
+    }
 
-	var snake_array;
-	
-	function init()
-	{
-		d = "right";
-		create_snake();
-		create_food();
-		score = 0;
-     level = 1;
-		
-		if(typeof game_loop != "undefined") clearInterval(game_loop);
-		game_loop = setInterval(paint, 100);
-	}
-	init();
-	
-	function create_snake()
-	{
-		var length = 5;
-		snake_array = [];
-		for(var i = length-1; i>=0; i--)
-		{
-			snake_array.push({x: i, y:0});
-		}
-	}
-	
-	function create_food()
-	{
-		food = {
-			x: Math.round(Math.random()*(w-cw)/cw), 
-			y: Math.round(Math.random()*(h-cw)/cw), 
-		};
-	}
+    if ($(".keyboard").empty) {
+        for (var i = 0; i < min.length; i++) {
+            buttons.push('<button>' + min[i] + '</button>');
+        }
+        $(".keyboard").html(buttons.join(""));
+    }
 
-	function paint()
-	{
+    $("#btn1").click(function() {
+        if ($("#word1").val() == "") {
+            $("#required").text("Empty");
+			$("#wordInput").show();
+        } else {
+            $("#required").text("");
+			$("#wordInput").hide();
+            $("button").attr("disabled", false);
+            chain.push($("#word1").val().split(""));
+            length = $("#word1").val().length;
+            answer = $("#word1").val();
+            uppercase = answer.toUpperCase();
+            var cont = 0;
+            while (cont < length) {
+                if (answer.charAt(cont) == " ") {
+                    $("#word").append(" ");
+                } else {
+                    $("#word").append("-");
+                }
+                cont++;
+            }
+            $("#word1").val("");
+        }
+    });
 
-		ctx.fillStyle = "white";
-		ctx.fillRect(0, 0, w, h);
-		ctx.strokeStyle = "black";
-		ctx.strokeRect(0, 0, w, h);
-		
-		var nx = snake_array[0].x;
-		var ny = snake_array[0].y;
+    $("#btn2").click(function() {
+        $(".title").empty();
+        answer = "";
+        uppercase = "";
+        chain = [];
+        $("button").removeClass("good");
+        $("button").removeClass("wrong");
+        $(".draw").text("Lets play").removeClass("goodJob", "playAgain");
+		$("#wordInput").show();
+        wrong = 10;
+        $("button").attr("disabled", true);
+        $("button#btn1").attr("disabled", false);
+    });
 
-		if(d == "right") nx++;
-		else if(d == "left") nx--;
-		else if(d == "up") ny--;
-		else if(d == "down") ny++;
-		
-		if(nx == -1 || nx == w/cw || ny == -1 || ny == h/cw || check_collision(nx, ny, snake_array))
-		{
-			init();
-			return;
-		}
-		
-		if(nx == food.x && ny == food.y)
-		{
-			var tail = {x: nx, y: ny};
-			score++;
-			create_food();
-		}
-		else
-		{
-			var tail = snake_array.pop();
-			tail.x = nx; tail.y = ny;
-		}
-		
-		snake_array.unshift(tail);
-		
-		for(var i = 0; i < snake_array.length; i++)
-		{
-			var c = snake_array[i];
-			paint_cell(c.x, c.y, "blue");
-		}
-		
-		paint_cell(food.x, food.y, "red");
-		var score_text = "Score: " + score;
-     var level_text = "Level: " + level;
-		ctx.fillText(score_text, 5, h-5);
-     ctx.fillText(level_text, 60, h-5);
-	}
-	
-	function paint_cell(x, y, color)
-	{
-		ctx.fillStyle = color;
-		ctx.fillRect(x*cw, y*cw, cw, cw);
-		ctx.strokeStyle = "white";
-		ctx.strokeRect(x*cw, y*cw, cw, cw);
-	}
-	
-	function check_collision(x, y, array)
-	{
-		for(var i = 0; i < array.length; i++)
-		{
-			if(array[i].x == x && array[i].y == y)
-			return true;
-		}
-		return false;
-	}
-	
-	$(document).keydown(function(e){
-		var key = e.which;
-		if(key == "37" && d != "right") d = "left";
-		else if(key == "38" && d != "down") d = "up";
-		else if(key == "39" && d != "left") d = "right";
-		else if(key == "40" && d != "up") d = "down";
-	})
-	
-})
+    $("button").click(function() {
+        letter = $(this).text();
+        if ((letter == "Set") || (letter == "Clear")) {} 
+      else {
+            $(this).attr("disabled", true).fadeOut("slow");
+            console.log(letter);
+            console.log(uppercase);
+            if (uppercase.includes(letter)) {
+                var indices = [];
+                for (var i = 0; i < uppercase.length; i++) {
+                    if (uppercase[i] === letter)
+                        indices.push(i);
+                }
+                for (var j = 0; j < indices.length; j++) {
+                    numToMatch = indices[j];
+                    stringword = $("#word").html();
+                    stringword = setCharAt(stringword, numToMatch, letter);
+                    $("#word").text(stringword);
+                }
+                if (stringword.includes("-")) {} 
+              else {
+                    $(".draw").text("YOU WON!").addClass("goodJob");
+                    $("button").attr("disabled", true);
+                    $("button#btn1").attr("disabled", false);
+                    $("button#btn2").attr("disabled", false);
+                }
+                $(this).addClass("good");
+            } else {
+                $(this).addClass("wrong");
+                wrong--;
+                $(".draw").text("Lives left " + wrong);
+                if (wrong <= 0) {
+                    wrong = 0;
+                    $(".draw").text("YOU LOST, PLAY Again").addClass("playAgain");
+                    if(($(".draw").text()) == "YOU LOST"){
+                      $("#word").replaceWith("<p class='title'>" + uppercase + "</p>");
+                      $("button").attr("disabled", true);
+                      $("button#btn1").attr("disabled", false);
+                      $("button#btn2").attr("disabled", false);
+                    }
+                }
+            }
+        }
+    });
+});

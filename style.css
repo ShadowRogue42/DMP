@@ -1,14 +1,96 @@
 body {
-  background-color: #E1E1E1;
+  font-family: calibri;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0;
+	background-image: url("images/gallows-cartoon.jpg");
+	background-size: 80vh;
+	background-position: 2% 0%;
+	background-repeat: no-repeat;
 }
 
-.titleHeader {
+#main-container {
+	width: 100%;
 	text-align: center;
-	padding: 2em;
+	display: inline-block;
+	padding: 3em;
 }
 
-#canvas {
-  display: block;
-  margin: 1rem auto;
-  border: 10px solid #000;
+#game-title {
+  font-family: calibri;
+	font-weight: bold;
+	font-size: 2.5em;
+}
+
+#drawWord {
+  font-size: 3em;
+  margin: 0px;
+}
+
+#intTxt {
+  color: red;
+}
+
+.title{
+  color: black;
+  font-size:50px;
+  text-align:center;
+}
+
+form{
+  text-align: center;
+  padding-top:400px;
+}
+
+.areaP{
+  background-color:white;
+  max-width:100%;
+}
+
+button {
+ border: solid black 2px;
+ width: 40px;
+ height: 40px;
+ background:#fff;
+ color: #000;
+ padding: 10px;
+ font-size: 18px;
+ border-color:#000;
+ border-radius: 5px;
+ border-style: solid;
+ position: relative;
+ box-sizing: border-box;
+ margin:5px; 
+}
+
+button:hover {
+ background: rgba(0,0,0,0);
+ color: #E00003;
+ border-color: inset 0 0 0 3px #E00003;
+}
+
+div.keyboard{
+  position: inherit;
+  bottom: 100px;
+  margin-top: 70px;
+  margin: auto;
+  max-width:450px;
+}
+
+.wrong{
+  background-color:red;
+  color:white;
+}
+
+.good{
+    background-color:green;
+    color:white;
+}
+
+.playAgain {
+	color: red;
+}
+
+.goodJob {
+	color: blue;
 }
